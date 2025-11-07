@@ -1,23 +1,17 @@
-version: '3.8'
-
 services:
-  api:
-    build: .
-    container_name: api_c
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_c
     ports:
-      - '4000:4000'
+      - "8080:8080"
+      - "50000:50000"
     volumes:
-      - ./api:/app
-      - /app/node_modules
-    command: npm run dev
+      - jenkins_home:/var/jenkins_home
 
-  myblog:
-    build: ./myblog
-    container_name: myblog_c
-    ports:
-      - '3000:3000'
-    stdin_open: true
-    tty: true
+volumes:
+  jenkins_home:
+
 
 
   
+
